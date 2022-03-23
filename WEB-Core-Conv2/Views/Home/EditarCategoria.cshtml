@@ -1,0 +1,23 @@
+﻿@model WEB_Core_Conv2.Models.Categoria
+<h1>Editar Categorìa</h1>
+<form asp-action = "EditarValorCategoria" method="post"> 
+    @*el post oculta los identificadores en la ruta*@
+
+        <div class = "row">
+            <div class = "col-md-6">        
+                <label class="col-form-label">Nombre</label>
+                <input type="text" class="form-control" name="Nombre" value = "@Model.Nombre"/>
+            </div>
+        </div>
+        <div class = "row">
+            <div class = "col-md-6">
+                <label class="col-form-label">Descripciòn</label>
+                <input type="text" class="form-control" name="Descripcion" value = "@Model.Descripcion"/>
+            </div>
+        </div>
+        <input type="hidden" name="IdCategoria" value = "@Model.IdCategoria"/>
+
+    <div class = "row p-3">
+        <input type = "submit" value = "Actualizar" class = "btn btn-success" />
+    </div>
+</form>
