@@ -1,11 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
+using WEB_Core_Conv2.Data;
 
 namespace WEB_Core_Conv2.Models
 {
+
     public class Producto
     {
+        private MyDbContext _context;
+
         [Key]
         public int IdProducto
         {
@@ -22,7 +29,7 @@ namespace WEB_Core_Conv2.Models
 
         [ForeignKey("IdCategoria")]
 
-        public Categoria Categoria { get; set; }
+        //public Categoria Categoria { get; set; }
 
 
         [StringLength(100)]
@@ -49,6 +56,11 @@ namespace WEB_Core_Conv2.Models
             get;
             set;
         }
+        //public List<Categoria> ObtenerCategorias()
+        //{
+        //    List<Categoria> lista = _context.Categoria.ToList();
+        //    return lista;
+        //}
 
     }
 }

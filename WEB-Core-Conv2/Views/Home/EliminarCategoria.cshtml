@@ -1,4 +1,4 @@
-﻿@model List<WEB_Core_Conv2.Models.Categoria>
-<form asp-action = "EliminarCategoria"> 
-
+﻿@model WEB_Core_Conv2.Models.Categoria
+<form asp-action="EliminarCategoria" method="post">
+    <input type="hidden" name="IdCategoria" value="@Model.IdCategoria" />
 </form>>

@@ -22,7 +22,7 @@
                         <a name="ver-descripcion" class="btn btn-success" href="javascript:void(0)">Ver Descripciòn</a>
                                  
                             <a class="btn btn-warning" href="@Url.Action("EditarCategoria", new { IdCategoria = categoria.IdCategoria, categoria.Nombre, Descripcion = categoria.Descripcion})">Editar</a>
-                           <a class="btn btn-danger" href="@Url.Action("EliminarCategoria", new { IdCategoria = categoria.IdCategoria, categoria.Nombre, Descripcion = categoria.Descripcion})">Eliminar</a>
+                           <a class="btn btn-danger" href="@Url.Action("EliminarCategoria", new { IdCategoria = categoria.IdCategoria, Nombre = categoria.Nombre, Descripcion = categoria.Descripcion})">Eliminar</a>
 
                         </td>
                     </tr>

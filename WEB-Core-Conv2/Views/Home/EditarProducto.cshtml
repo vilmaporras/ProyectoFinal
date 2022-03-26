@@ -1,0 +1,35 @@
+﻿@model WEB_Core_Conv2.Models.Producto
+<h1>Editar Productos</h1>
+<form asp-action="EditarValorProducto" method="post">
+    @*el post oculta los identificadores en la ruta*@
+
+    <div class="row">
+        <div class="col-md-6">
+            <label class="col-form-label">Categoria</label>
+            <input type="text" class="form-control" name="IdCategoria" value="@Model.IdCategoria" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label class="col-form-label">Nombre</label>
+            <input type="text" class="form-control" name="Nombre" value="@Model.Nombre" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label class="col-form-label">Precio</label>
+            <input type="text" class="form-control" name="Precio" value="@Model.Precio" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label class="col-form-label">Descripción</label>
+            <input type="text" class="form-control" name="Descripcion" value="@Model.Descripcion" />
+        </div>
+    </div>
+    <input type="hidden" name="IdProducto" value="@Model.IdProducto" />
+
+    <div class="row p-3">
+        <input type="submit" value="Actualizar" class="btn btn-success" />
+    </div>
+</form>

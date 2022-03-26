@@ -29,7 +29,7 @@ namespace WEB_Core_Conv2.Controllers
 
             List<Paciente> pacientes = new List<Paciente>();
             List<Categoria> categorias = new List<Categoria>();
-
+            List<Producto> productos = new List<Producto>();
 
             pacientes.Add(new Paciente()
             {
@@ -104,7 +104,7 @@ namespace WEB_Core_Conv2.Controllers
             else
             {
                 productos.FechaCreacion = System.DateTime.Now;
-                productos.IdCategoria = 1;
+                productos.IdCategoria = 3;
                 _context.Producto.Add(productos);
                 _context.SaveChanges();
                 return Json(new
@@ -137,18 +137,41 @@ namespace WEB_Core_Conv2.Controllers
             return View("ListaCategoria", categorias);
         }
 
+        public IActionResult EditarValorProducto (Producto producto)
+        {
+            Producto productoactual = _context.Producto.Where(p => p.IdProducto == producto.IdProducto).FirstOrDefault();
+            productoactual.IdCategoria = producto.IdCategoria;
+            productoactual.Nombre = producto.Nombre;
+            productoactual.Precio = producto.Precio;
+            productoactual.Descripcion = producto.Descripcion;
+            _context.SaveChanges();
+
+            List<Producto> productos = _context.Producto.ToList();
+
+            return View("ListaProductos", productos);
+        }
         public IActionResult ListaCategoria()
         {
             List<Categoria> categorias = _context.Categoria.ToList();
             return View(categorias);
         }
 
+        public IActionResult ListaProductos()
+        {
+            List<Producto> productos = _context.Producto.ToList();
+            return View(productos);
+        }
         public IActionResult EditarCategoria(int IdCategoria)
         {
             Categoria modelo = _context.Categoria.Where(c => c.IdCategoria == IdCategoria).FirstOrDefault();
             return View("EditarCategoria", modelo);
         }
 
+        public IActionResult EditarProducto(int IdProducto)
+        {
+            Producto modelo = _context.Producto.Where(p => p.IdProducto == IdProducto).FirstOrDefault();
+            return View("EditarProducto", modelo);
+        }
         public IActionResult EliminarCategoria(int IdCategoria)
         {
             List<Producto> productos = _context.Producto.Where(a => a.IdCategoria == IdCategoria).ToList();
@@ -164,7 +187,21 @@ namespace WEB_Core_Conv2.Controllers
             _context.SaveChanges();
 
             List<Categoria> categorias = _context.Categoria.ToList();
-            return View(categorias);
+            return View(categoria);
+        }
+        public IActionResult EliminarProducto(int IdProducto)
+        {
+
+            //Con EntityFramework eliminar el valor.
+            Producto producto = _context.Producto.Where(p => p.IdProducto == IdProducto).FirstOrDefault();
+
+            if (producto != null)
+                _context.Remove(producto);
+            _context.SaveChanges();
+
+            List<Producto> productos = _context.Producto.ToList();
+           
+            return View(productos);
         }
         // El Json recibido será serializado automáticamente al objeto nuevo cocche teniendo en cuenta que las propiedades han de tener el mismo nombre
         public bool GuardarCategoria(Categoria categoria)

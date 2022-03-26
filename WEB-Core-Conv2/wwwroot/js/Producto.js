@@ -1,9 +1,9 @@
 $("#btnGuardar").click(function () {
-    var Nombre = $(".Nombre").val();
-    var Precio = $(".Precio").val();
-    var Descripcion = $(".Descripcion").val();
+    var nombre = $(".nombre").val();
+    var precio = $(".precio").val();
+    var descripcion = $(".descripcion").val();
 
-    if (Nombre == "") {
+    if (nombre == "") {
         alert("El Nombre es requerido");
     }
     else
@@ -12,16 +12,16 @@ $("#btnGuardar").click(function () {
             url: "CrearProducto",
             type: "POST",
             data: {
-                "Nombre": Nombre,
-                "Precio": Precio,
-                "Descripcion": Descripcion
+                "Nombre": nombre,
+                "Precio": precio,
+                "Descripcion": descripcion
             }
         });
         xhr.done(function (data) {
             if (data.success) {
                 alert('Has agregado un nuevo producto!');
                 setTimeout(function () {
-                    location.href = "../Home/Producto";
+                    location.href = "../Home/ListaProductos";
                 }, 2000)
             }
             else {
@@ -36,3 +36,16 @@ $("#btnGuardar").click(function () {
         });
     }
 })
+$(document).ready(function () {
+    $(function () {
+        $.ajax({
+            type: 'GET',
+            url: "ListaCategoria",
+            success: function (response) {
+                $.each(response,function(indice, fila){
+                    $('#categorias').append("<option value='" + fila.Nombre + "'>" + fila.Nombre + "</option>")
+                });
+            }
+        });
+    });
+});
